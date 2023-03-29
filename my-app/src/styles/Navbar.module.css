@@ -1,0 +1,23 @@
+.navbar {
+  background: black;
+  padding: 30px 0;
+  color: white;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  color: rgb(214, 214, 214);
+}
+
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+}
