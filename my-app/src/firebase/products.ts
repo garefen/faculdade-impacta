@@ -8,6 +8,8 @@ export function addProduct(name: string, price: number, amount: number) {
     amount,
  };
  setDoc(doc(db, "products", makeId(10).toString()), data);
+
+ return data;
 }
 
 export async function getProducts() {
@@ -29,8 +31,7 @@ function makeId(length: number) {
   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   var charactersLength = characters.length;
   for ( var i = 0; i < length; i++ ) {
-  result += characters.charAt(Math.floor(Math.random() * 
-                                    charactersLength));
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
 }
