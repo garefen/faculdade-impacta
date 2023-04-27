@@ -1,5 +1,5 @@
 import {db} from "./clientApp";
-import {collection, query, getDocs, setDoc, doc} from "firebase/firestore";
+import {collection, query, getDocs, setDoc, doc, updateDoc} from "firebase/firestore";
 
 export function addProduct(name: string, price: number, amount: number) {
   const data = {
@@ -24,6 +24,30 @@ export async function getProducts() {
   });
 
   return products;
+}
+
+
+export async function getSingleProduct() {
+  const products: any = [];
+  const q = query(collection(db, "products"));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const id = doc.id;
+    let data = doc.data();
+    data = {id, ...data}
+    products.push(data);
+  });
+
+  return products[0];
+}
+
+export async function updateProduct(product: any) {
+  const productRef = doc(db, "products", product.id);
+  await updateDoc(productRef, {
+    name: product.name,
+    price: product.price,
+    amount: product.amount,
+  });
 }
 
 function makeId(length: number) {

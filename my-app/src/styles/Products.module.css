@@ -2,6 +2,12 @@
 
 }
 
+.updateHeadline {
+  text-align: center;
+  margin: 0 0 40px;
+  font-size: 34px;
+}
+
 .form {
   margin-top: 50px;
   text-align: center;

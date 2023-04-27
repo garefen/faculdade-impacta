@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '@/styles/Products.module.css'
 import {getProducts, addProduct} from '@/firebase/products'
 
@@ -8,14 +9,22 @@ interface Props {
    products: any;
 }
 
-const Home: FC<Props>  = ({ products }) => {
+const Products: FC<Props>  = ({ products }) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [amount, setAmount] = useState('');
 
   const handleFormSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    addProduct(name, parseFloat(price), parseInt(amount));
+    const newPrice = parseFloat(price);
+    const newAmount = parseInt(amount)
+    const newProduct = {
+      name, 
+      price: newPrice,
+      amount: newAmount,
+    }
+    addProduct(newProduct.name, newProduct.price, newProduct.amount);
+    products.push(newProduct);
     setName("");
     setPrice("");
     setAmount("");
@@ -72,8 +81,9 @@ const Home: FC<Props>  = ({ products }) => {
               {products.map((product: any) => (
                 <tr key={product.id} className={styles.product}>
                   <td className={styles.productLine}>Nome: {product.name}</td>
-                  <td className={styles.productLine}>Preço: R${product.price}</td>
+                  <td className={styles.productLine}>Preço: R${product.price.toFixed(2).replace('.', ',')}</td>
                   <td className={styles.productLine}>Quantidade: {product.amount}</td>
+                  <td><Link href={`/products/${product.id}`}>update</Link></td>
                 </tr>
               ))}
             </tbody>
@@ -85,12 +95,11 @@ const Home: FC<Props>  = ({ products }) => {
 }
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await getProducts();
-
   return {
-    props: {products}
-  }
+    props: { products },
+  };
 }
 
-export default Home;
+export default Products;
