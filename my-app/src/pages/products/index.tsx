@@ -6,7 +6,7 @@ import {getProducts, addProduct} from '@/firebase/products'
 import React, { FC, useState } from "react";
 
 interface Props {
-   products: any;
+  products: any;
 }
 
 const Products: FC<Props>  = ({ products }) => {
@@ -19,7 +19,7 @@ const Products: FC<Props>  = ({ products }) => {
     const newPrice = parseFloat(price);
     const newAmount = parseInt(amount)
     const newProduct = {
-      name, 
+      name,
       price: newPrice,
       amount: newAmount,
     }
@@ -83,7 +83,7 @@ const Products: FC<Props>  = ({ products }) => {
                   <td className={styles.productLine}>Nome: {product.name}</td>
                   <td className={styles.productLine}>Preço: R${product.price.toFixed(2).replace('.', ',')}</td>
                   <td className={styles.productLine}>Quantidade: {product.amount}</td>
-                  <td><Link href={`/products/${product.id}`}>update</Link></td>
+                  <td><Link href={`/products/${product.id}`} className={styles.updateBtn}>Update</Link></td>
                 </tr>
               ))}
             </tbody>

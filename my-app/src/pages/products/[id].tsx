@@ -23,9 +23,10 @@ const Update: FC<Props>  = ({product}) => {
       name,
       price,
       amount,
+    }).then(() => {
+      alert('Produto alterado com sucesso');
+      router.push('/products');
     });
-    alert('Produto alterado com sucesso');
-    router.push('/products');
   }
 
   return (

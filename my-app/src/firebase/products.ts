@@ -27,15 +27,17 @@ export async function getProducts() {
 }
 
 
-export async function getSingleProduct() {
+export async function getSingleProduct(productId: string) {
   const products: any = [];
   const q = query(collection(db, "products"));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     const id = doc.id;
-    let data = doc.data();
-    data = {id, ...data}
-    products.push(data);
+    if (id === productId) {
+      let data = doc.data();
+      data = {id, ...data}
+      products.push(data);
+    }
   });
 
   return products[0];
@@ -45,7 +47,7 @@ export async function updateProduct(product: any) {
   const productRef = doc(db, "products", product.id);
   await updateDoc(productRef, {
     name: product.name,
-    price: product.price,
+    price: Number(product.price),
     amount: product.amount,
   });
 }
