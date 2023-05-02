@@ -8,6 +8,7 @@ export default function Navbar() {
         <Link className={styles.link} href="/">Sistema de estoque</Link>
         <div className={styles.links}>
           <Link className={styles.link} href="/products">Produtos</Link>
+          <Link className={styles.link} href="/suppliers">Fornecedores</Link>
         </div>
       </div>
     </div>
