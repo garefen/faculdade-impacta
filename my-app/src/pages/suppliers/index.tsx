@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '@/styles/Products.module.css'
+import styles from '@/styles/Suppliers.module.css'
 import {getSuppliers, addSupplier} from '@/firebase/suppliers'
 
 import React, { FC, useState } from "react";
@@ -85,12 +85,12 @@ const Suppliers: FC<Props>  = ({ suppliers }) => {
           <div className={styles.headline}>
             Lista de Fornecedores:
           </div>
-          <table className={styles.productTable}>
+          <table className={styles.supplierTable}>
             <tbody>
               {suppliers.map((supplier: any) => (
                 <tr key={supplier.id} className={styles.supplier}>
                   <td className={styles.supplierLine}>Nome: {supplier.name}</td>
-                  <td className={styles.supplierLine}>Endereco: {supplier.address}</td>
+                  <td className={styles.supplierLine}>Endereço: {supplier.address}</td>
                   <td className={styles.supplierLine}>Telefone: {supplier.phone}</td>
                   <td className={styles.supplierLine}>CNPJ: {supplier.cnpj}</td>
                 </tr>
