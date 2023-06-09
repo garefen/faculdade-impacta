@@ -49,11 +49,15 @@
 }
 
 .headline {
-  margin: 0 0 40px;
+  margin: 0 0 10px;
   font-size: 22px;
 }
 
-.supplier {
+.subheadline {
+  margin: 0 0 40px;
+}
+
+.supplierLine {
   margin: 10px 0;
   justify-content: space-between;
   text-align: right;
@@ -64,7 +68,7 @@
   width: 100%;
 }
 
-.supplierLine {
+.supplierCel {
   margin: 10px 0;
   display: inline-block;
   text-align: center;
@@ -72,15 +76,23 @@
   padding: 10px;
 }
 
-.supplierLine:first-child {
+.link {
+  margin: 10px 0;
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+  color: blue;
+}
+
+.supplierCel:first-child {
   text-align: left;
 }
 
-.supplierLine:last-child {
+.supplierCel:last-child {
   text-align: right;
 }
 
-.supplier:nth-child(odd) {
+.supplierLine:nth-child(odd) {
   background-color: rgb(233, 233, 233);
 }
 

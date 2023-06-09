@@ -85,14 +85,29 @@ const Suppliers: FC<Props>  = ({ suppliers }) => {
           <div className={styles.headline}>
             Lista de Fornecedores:
           </div>
+          <div className={styles.subheadline}>
+            Clique no nome do fornecedor para atualizar
+          </div>
           <table className={styles.supplierTable}>
+            <thead>
+              <tr className={styles.supplierHeader}>
+                <th className={styles.supplierCel}>Nome</th>
+                <th className={styles.supplierCel}>Endereço</th>
+                <th className={styles.supplierCel}>Telefone</th>
+                <th className={styles.supplierCel}>CNPJ</th>
+              </tr>
+            </thead>
             <tbody>
               {suppliers.map((supplier: any) => (
-                <tr key={supplier.id} className={styles.supplier}>
-                  <td className={styles.supplierLine}>Nome: {supplier.name}</td>
-                  <td className={styles.supplierLine}>Endereço: {supplier.address}</td>
-                  <td className={styles.supplierLine}>Telefone: {supplier.phone}</td>
-                  <td className={styles.supplierLine}>CNPJ: {supplier.cnpj}</td>
+                <tr key={supplier.id} className={styles.supplierLine}>
+                  <td className={styles.supplierCel}>
+                    <Link className={styles.link} key={supplier.id} href={`/suppliers/${supplier.id}`}>
+                      {supplier.name}
+                    </Link>
+                  </td>
+                  <td className={styles.supplierCel}>{supplier.address}</td>
+                  <td className={styles.supplierCel}>{supplier.phone}</td>
+                  <td className={styles.supplierCel}>{supplier.cnpj}</td>
                 </tr>
               ))}
             </tbody>

@@ -6,7 +6,7 @@ export function addSupplier(name: string, address: string, phone: string, cnpj: 
     name,
     address,
     phone,
-    cnpj
+    cnpj,
  };
  setDoc(doc(db, "suppliers", makeId(10).toString()), data);
 
@@ -27,12 +27,29 @@ export async function getSuppliers() {
   return suppliers;
 }
 
-export async function updateSupplier(product: any) {
-  const productRef = doc(db, "suppliers", product.id);
-  await updateDoc(productRef, {
-    name: product.name,
-    price: Number(product.price),
-    amount: product.amount,
+export async function getSingleSupplier(supplierId: string) {
+  const products: any = [];
+  const q = query(collection(db, "suppliers"));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const id = doc.id;
+    if (id === supplierId) {
+      let data = doc.data();
+      data = {id, ...data}
+      products.push(data);
+    }
+  });
+
+  return products[0];
+}
+
+export async function updateSupplier(supplier: any) {
+  const supplierRef = doc(db, "suppliers", supplier.id);
+  await updateDoc(supplierRef, {
+    name: supplier.name,
+    address: supplier.address,
+    phone: supplier.phone,
+    cnpj: supplier.cnpj,
   });
 }
 
